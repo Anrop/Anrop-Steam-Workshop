@@ -25,7 +25,7 @@ function init (steamWorkshop) {
 
       // Remove missions from result, missions contains a filename, mods don't
       items = items.filter(function (item) {
-        return !item.filename
+        return item.result === 1 && !item.filename
       })
 
       return res.send(items.map(formatItem))

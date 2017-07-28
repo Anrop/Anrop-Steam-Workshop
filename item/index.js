@@ -19,6 +19,10 @@ function init (steamWorkshop) {
 
       const item = items[0]
 
+      if (item.result !== 1) {
+        return res.status(404).send({})
+      }
+
       return res.send(formatItem(item))
     })
   })

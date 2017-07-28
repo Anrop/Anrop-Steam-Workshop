@@ -7,7 +7,7 @@ module.exports = function (item) {
     created: item.created,
     description: item.short_description,
     fileSize: item.file_size,
-    fileSizeFormatted: filesize(item.file_size),
+    fileSizeFormatted: item.file_size ? filesize(item.file_size) : undefined,
     id: item.publishedfileid,
     image: item.preview_url,
     link: BASE_URL + item.publishedfileid,
