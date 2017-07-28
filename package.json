@@ -1,0 +1,32 @@
+{
+  "name": "anrop-steam",
+  "version": "1.0.0",
+  "description": "Steam service for Anrop",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard --verbose",
+    "start": "node index.js",
+    "test": "mocha -R spec"
+  },
+  "author": "Björn Dahlgren",
+  "license": "MIT",
+  "standard": {
+    "env": [
+      "mocha"
+    ]
+  },
+  "dependencies": {
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "filesize": "^3.5.10",
+    "memory-cache": "^0.2.0",
+    "newrelic": "^2.0.1",
+    "steam-workshop": "https://github.com/Dahlgren/node-steam-workshop/tarball/848415dfe21abe77ac346c5339df7b063a7830ec"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.2",
+    "standard": "^10.0.2",
+    "supertest": "^3.0.0"
+  }
+}
