@@ -1,7 +1,7 @@
 {
-  "name": "anrop-steam",
+  "name": "anrop-steam-workshop",
   "version": "1.0.0",
-  "description": "Steam service for Anrop",
+  "description": "Steam Workshop API for Anrop",
   "main": "index.js",
   "scripts": {
     "lint": "standard --verbose",
