@@ -2,6 +2,7 @@
 
 * Search Steam Workshop
 * Fetch info about Steam Workshop Item
+* Create HTML Preset for an operation
 
 ## Requirements
 
