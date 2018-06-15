@@ -18,6 +18,7 @@ app.get('/', function (req, res) {
 })
 
 app.use('/item', require('./item')(steamWorkshop))
+app.use('/preset', require('./preset')(steamWorkshop))
 app.use('/search', require('./search')(steamWorkshop))
 
 app.listen(process.env.PORT || 3000)
