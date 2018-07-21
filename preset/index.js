@@ -31,7 +31,13 @@ function init (steamWorkshop) {
   }
 
   function resolveMods (mods, callback) {
-    async.map(mods, resolveMod, callback)
+    async.map(mods, resolveMod, function (err, mods) {
+      mods.sort(function (a, b) {
+        return a.title.localeCompare(b.title)
+      })
+
+      callback(err, mods)
+    })
   }
 
   function fetchMods (id, callback) {
