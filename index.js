@@ -17,6 +17,7 @@ app.get('/', function (req, res) {
   res.send('hello world!')
 })
 
+app.use('/collection', require('./collection')(steamWorkshop))
 app.use('/item', require('./item')(steamWorkshop))
 app.use('/preset', require('./preset')(steamWorkshop))
 app.use('/search', require('./search')(steamWorkshop))
