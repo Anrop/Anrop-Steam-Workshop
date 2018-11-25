@@ -2,6 +2,7 @@ const express = require('express')
 
 const cache = require('../cache')
 const createQuery = require('./create_query')
+const fuzzySearch = require('./fuzzy_search')
 const formatItem = require('../utils/format_item.js')
 
 const CACHE_SEARCH_RESPONSE_DURATION = 60 * 60 // 1h
@@ -28,7 +29,13 @@ function init (steamWorkshop) {
         return item.result === 1 && !item.filename
       })
 
-      return res.send(items.map(formatItem))
+      // Format each item into common format
+      items = items.map(formatItem)
+
+      // Filter and sort items based on fuzzy search
+      items = fuzzySearch(items, text)
+
+      return res.send(items)
     })
   })
 
