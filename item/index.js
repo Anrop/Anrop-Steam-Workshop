@@ -1,14 +1,11 @@
 const express = require('express')
 
-const cache = require('../cache')
 const formatItem = require('../utils/format_item.js')
-
-const CACHE_INFO_RESPONSE_DURATION = 60 * 60 // 1h
 
 function init (steamWorkshop) {
   const app = express()
 
-  app.get('/:id', cache(CACHE_INFO_RESPONSE_DURATION), function (req, res) {
+  app.get('/:id', function (req, res) {
     const id = req.params.id
 
     steamWorkshop.getPublishedFileDetails(id, function (err, items) {
