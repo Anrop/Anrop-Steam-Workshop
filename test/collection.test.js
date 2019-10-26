@@ -27,8 +27,6 @@ const app = require('../collection')(dummySteamWorkshop)
 describe('collection', function () {
   describe('GET /', function () {
     it('should respond with json', function (done) {
-      this.timeout(10000)
-
       request(app)
         .get('/123')
         .set('Accept', 'application/json')
@@ -37,6 +35,6 @@ describe('collection', function () {
           if (err) return done(err)
           return done()
         })
-    })
+    }, 10000)
   })
 })
