@@ -22,7 +22,7 @@
     "express": "^4.17.1",
     "filesize": "^6.1.0",
     "fuse.js": "^3.6.1",
-    "handlebars": "^4.7.6",
+    "handlebars": "^4.7.7",
     "newrelic": "^6.5.0",
     "request": "^2.88.2",
     "slugify": "^1.4.0",
