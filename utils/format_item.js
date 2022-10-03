@@ -4,7 +4,7 @@ const BASE_URL = 'https://steamcommunity.com/sharedfiles/filedetails/'
 
 module.exports = function (item) {
   return {
-    created: item.created,
+    created: item.time_created,
     description: item.short_description,
     fileSize: item.file_size,
     fileSizeFormatted: item.file_size ? filesize(item.file_size) : undefined,
@@ -13,6 +13,6 @@ module.exports = function (item) {
     link: BASE_URL + item.publishedfileid,
     subscriptions: item.subscriptions,
     title: item.title,
-    updated: item.updated
+    updated: item.time_updated
   }
 }

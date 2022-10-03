@@ -43,20 +43,18 @@ const app = require('../preset')(dummySteamWorkshop, dummyOperationsApi)
 
 describe('preset', function () {
   describe('GET /', function () {
-    it('should respond with json', function (done) {
-      request(app)
+    it('should respond with json', function () {
+      return request(app)
         .get('/123')
         .expect('Content-Type', 'text/html')
         .expect(200)
-        .end(function (err, res) {
-          if (err) return done(err)
+        .then(function (res) {
           assert.strict.match(res.text, /<meta name="arma:PresetName" content="Dummy Operation" \/>/)
           assert.strict.match(res.text, /<h1>Arma 3 Mods - Preset <strong>Dummy Operation<\/strong><\/h1>/)
           assert.strict.match(res.text, /<td data-type="DisplayName">SFP: Swedish Forces Pack<\/td>/)
           assert.strict.match(res.text, /<a href="http:\/\/steamcommunity.com\/sharedfiles\/filedetails\/\?id=826911897" data-type="Link">/)
           assert.strict.match(res.text, /<td data-type="DisplayName">123<\/td>/)
           assert.strict.match(res.text, /<a href="http:\/\/steamcommunity.com\/sharedfiles\/filedetails\/\?id=123" data-type="Link">/)
-          return done()
         })
     }, 10000)
   })

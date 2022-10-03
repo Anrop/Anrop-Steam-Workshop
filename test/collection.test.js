@@ -1,5 +1,7 @@
+const assert = require('assert')
 const request = require('supertest')
 const dummyItem = require('./dummy_item')
+const formatItem = require('../utils/format_item')
 
 const dummySteamWorkshop = {
   getCollectionDetails: function (id, cb) {
@@ -26,14 +28,13 @@ const app = require('../collection')(dummySteamWorkshop)
 
 describe('collection', function () {
   describe('GET /', function () {
-    it('should respond with json', function (done) {
-      request(app)
+    it('should respond with json', function () {
+      return request(app)
         .get('/123')
         .set('Accept', 'application/json')
         .expect(200)
-        .end(function (err, res) {
-          if (err) return done(err)
-          return done()
+        .then(function (res) {
+          assert.strict.equal(res.text, JSON.stringify([formatItem(dummyItem)]))
         })
     }, 10000)
   })

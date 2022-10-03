@@ -30,7 +30,9 @@ function init (steamWorkshop) {
       items = items.map(formatItem)
 
       // Filter and sort items based on fuzzy search
-      items = fuzzySearch(items, text)
+      items = fuzzySearch(items, text).map(function (result) {
+        return result.item
+      })
 
       return res.send(items)
     })
