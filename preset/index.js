@@ -3,15 +3,12 @@ const express = require('express')
 const fs = require('fs')
 const handlebars = require('handlebars')
 const path = require('path')
-const request = require('request')
 const slugify = require('slugify')
 
 const templateFile = fs.readFileSync(path.join(__dirname, 'template.html'), 'utf-8')
 const template = handlebars.compile(templateFile)
 
-const API_BASE_URL = 'https://api.anrop.se/operations/'
-
-function init (steamWorkshop) {
+function init (steamWorkshop, operations) {
   function resolveMod (mod, callback) {
     const id = mod.steam_workshop_id
     steamWorkshop.getPublishedFileDetails(id, function (err, items) {
@@ -40,22 +37,6 @@ function init (steamWorkshop) {
     })
   }
 
-  function fetchMods (id, callback) {
-    request.get({ url: API_BASE_URL + id + '/steam_workshop', json: true }, function (err, response, mods) {
-      if (err) {
-        return callback(err)
-      }
-
-      resolveMods(mods, callback)
-    })
-  }
-
-  function fetchOperation (id, callback) {
-    request.get({ url: API_BASE_URL + id, json: true }, function (err, response, operation) {
-      callback(err, operation)
-    })
-  }
-
   const app = express()
 
   app.get('/:id', function (req, res) {
@@ -63,10 +44,16 @@ function init (steamWorkshop) {
 
     async.parallel({
       mods: function (callback) {
-        fetchMods(id, callback)
+        operations.fetchMods(id, function (err, mods) {
+          if (err) {
+            return callback(err)
+          }
+
+          resolveMods(mods, callback)
+        })
       },
       operation: function (callback) {
-        fetchOperation(id, callback)
+        operations.fetchOperation(id, callback)
       }
     }, function (err, result) {
       if (err) {
