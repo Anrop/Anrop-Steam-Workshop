@@ -4,19 +4,28 @@ const dummyItem = require('./dummy_item')
 
 const dummySteamWorkshop = {
   getPublishedFileDetails: function (id, cb) {
-    return cb(null, [dummyItem])
+    if (id === 826911897) {
+      return cb(null, [dummyItem])
+    }
+
+    return cb(null, [{ result: 9 }])
   }
 }
 
 const dummyOperation = {
-  id: 123,
+  id: 1,
   title: 'Dummy Operation'
 }
 
 const dummyOperationMods = [
   {
-    id: 123,
-    operation_id: 123,
+    id: 1,
+    operation_id: 1,
+    steam_workshop_id: 826911897
+  },
+  {
+    id: 2,
+    operation_id: 1,
     steam_workshop_id: 123
   }
 ]
@@ -45,6 +54,8 @@ describe('preset', function () {
           assert.strict.match(res.text, /<h1>Arma 3 Mods - Preset <strong>Dummy Operation<\/strong><\/h1>/)
           assert.strict.match(res.text, /<td data-type="DisplayName">SFP: Swedish Forces Pack<\/td>/)
           assert.strict.match(res.text, /<a href="http:\/\/steamcommunity.com\/sharedfiles\/filedetails\/\?id=826911897" data-type="Link">/)
+          assert.strict.match(res.text, /<td data-type="DisplayName">123<\/td>/)
+          assert.strict.match(res.text, /<a href="http:\/\/steamcommunity.com\/sharedfiles\/filedetails\/\?id=123" data-type="Link">/)
           return done()
         })
     }, 10000)

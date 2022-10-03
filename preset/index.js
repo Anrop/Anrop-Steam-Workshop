@@ -20,7 +20,11 @@ function init (steamWorkshop, operations) {
       const item = items[0]
 
       if (item.result !== 1) {
-        return callback(new Error('Mod ' + id + ' not found'))
+        const dummy = {
+          publishedfileid: id,
+          title: id.toString()
+        }
+        return callback(null, dummy)
       }
 
       return callback(null, item)
