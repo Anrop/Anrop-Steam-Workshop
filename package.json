@@ -20,7 +20,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
-    "filesize": "^9.0.11",
+    "filesize": "^10.0.12",
     "fuse.js": "^6.6.2",
     "handlebars": "^4.7.7",
     "newrelic": "^9.10.2",
