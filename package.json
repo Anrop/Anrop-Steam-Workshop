@@ -25,7 +25,7 @@
     "handlebars": "^4.7.7",
     "newrelic": "^9.10.2",
     "request": "^2.88.2",
-    "slugify": "^1.6.5",
+    "slugify": "^1.6.6",
     "steam-workshop": "^0.0.5"
   },
   "devDependencies": {
